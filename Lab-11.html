@@ -2979,6 +2979,52 @@ print(&quot;T-Test, conf.level=.95&quot;)</code></pre>
 </div>
 <div id="task-4" class="section level2">
 <h2>Task 4</h2>
+<div id="paired-samples-r-as-calculator" class="section level3">
+<h3>Paired Samples, R as Calculator</h3>
+<pre class="r"><code>Exam1=c(40.98, 59.36, 46.69, 41.8, 61.63, 65.31, 62.96, 60.21, 56.89, 
+78.41, 53.44, 75.2, 60.54, 52.43, 41.41, 70.79, 73.55, 55.65, 
+61.43, 63.84, 58.07, 53.79, 54.45, 67.18, 44.46)
+
+Exam2=c(50.22, 66.19, 58.75, 51.88, 66.61, 70.86, 74.25, 70.23, 69.55, 
+87.18, 63.62, 81.7, 70.5, 66.02, 51.35, 80.92, 85.65, 65.44, 
+74.37, 75.28, 67.86, 59.92, 64.42, 73.57, 57.15)
+
+exdif=Exam1-Exam2
+
+
+alpha=0.05
+t=qt(1-(alpha/2), length(exdif)-1)
+
+ci[1] = mean(exdif) - t*sd(exdif)/sqrt(length(exdif))
+ci[2] = mean(exdif) + t*sd(exdif)/sqrt(length(exdif))
+
+ci</code></pre>
+<pre><code>## [1] -10.731329  -8.710271</code></pre>
+<p>Practically speaking, there is a <span class="math inline">\(95\%\)</span> chance that the difference in population means falls between <span class="math inline">\((-10.7313, -8.7102)\)</span>.</p>
+</div>
+<div id="paired-samples-t-test" class="section level3">
+<h3>Paired Samples, T-Test</h3>
+<pre class="r"><code>t.test(exdif)$conf.int</code></pre>
+<pre><code>## [1] -10.731329  -8.710271
+## attr(,&quot;conf.level&quot;)
+## [1] 0.95</code></pre>
+<pre class="r"><code>t.test(exdif, conf.level=.80)$conf.int</code></pre>
+<pre><code>## [1] -10.366041  -9.075559
+## attr(,&quot;conf.level&quot;)
+## [1] 0.8</code></pre>
+<pre class="r"><code>t.test(exdif, conf.level=.70)$conf.int</code></pre>
+<pre><code>## [1] -10.239465  -9.202135
+## attr(,&quot;conf.level&quot;)
+## [1] 0.7</code></pre>
+<pre class="r"><code>t.test(exdif, conf.level=.60)$conf.int</code></pre>
+<pre><code>## [1] -10.140335  -9.301265
+## attr(,&quot;conf.level&quot;)
+## [1] 0.6</code></pre>
+<pre class="r"><code>t.test(exdif, conf.level=.10)$conf.int</code></pre>
+<pre><code>## [1] -9.782981 -9.658619
+## attr(,&quot;conf.level&quot;)
+## [1] 0.1</code></pre>
+</div>
 </div>
 </div>
 

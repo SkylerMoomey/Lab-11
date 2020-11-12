@@ -172,3 +172,43 @@ t.test(blue, snapper, var.equal=TRUE, conf.level=.25)$conf.int
 As the confidence level decreases, the range of the confidence interval gets much smaller.
 
 ## Task 4
+
+### Paired Samples, R as Calculator
+
+```{r}
+Exam1=c(40.98, 59.36, 46.69, 41.8, 61.63, 65.31, 62.96, 60.21, 56.89, 
+78.41, 53.44, 75.2, 60.54, 52.43, 41.41, 70.79, 73.55, 55.65, 
+61.43, 63.84, 58.07, 53.79, 54.45, 67.18, 44.46)
+
+Exam2=c(50.22, 66.19, 58.75, 51.88, 66.61, 70.86, 74.25, 70.23, 69.55, 
+87.18, 63.62, 81.7, 70.5, 66.02, 51.35, 80.92, 85.65, 65.44, 
+74.37, 75.28, 67.86, 59.92, 64.42, 73.57, 57.15)
+
+exdif=Exam1-Exam2
+
+
+alpha=0.05
+t=qt(1-(alpha/2), length(exdif)-1)
+
+ci[1] = mean(exdif) - t*sd(exdif)/sqrt(length(exdif))
+ci[2] = mean(exdif) + t*sd(exdif)/sqrt(length(exdif))
+
+ci
+```
+
+Practically speaking, there is a $95\%$ chance that the difference in population means falls between $(-10.7313, -8.7102)$.
+
+### Paired Samples, T-Test
+
+```{r}
+t.test(exdif)$conf.int
+
+t.test(exdif, conf.level=.80)$conf.int
+
+t.test(exdif, conf.level=.70)$conf.int
+
+t.test(exdif, conf.level=.60)$conf.int
+
+t.test(exdif, conf.level=.10)$conf.int
+```
+
