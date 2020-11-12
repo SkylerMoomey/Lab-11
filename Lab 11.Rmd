@@ -288,3 +288,15 @@ var.test(sam1,sam2,conf.level=.60)$conf.int
 var.test(sam1,sam2,conf.level=.50)$conf.int
 ```
 
+## Task 7
+
+### myci()
+
+```{r}
+library(MATH4753moom0002)
+
+sam1=rnorm(5000, mean=4, sd=2)
+
+MATH4753moom0002::myci(sam1)
+```
+
