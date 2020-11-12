@@ -245,3 +245,46 @@ ci[2] = (p1-p2) + z*sqrt((p1*(1-p1))/n+(p2*(1-p2)/n))
 ci
 ```
 
+## Task 6
+
+### Two Samples from Normal Population; R as Calculator; Variance Ratio
+
+```{r}
+set.seed(35)
+sam1=rnorm(25,mean=10,sd=5)
+set.seed(45)
+sam2=rnorm(34,mean=40,sd=8)
+
+df1=length(sam1)-1
+df2=length(sam2)-1
+
+var1=var(sam1)
+var2=var(sam2)
+
+alpha=.05
+
+f1 = qf(1-(alpha/2), df1, df2)
+f2 = qf(1-(alpha/2), df2, df1)
+
+ci[1] = (var1/var2)*(1/f1)
+ci[2] = (var1/var2)*f2
+
+ci
+```
+
+### Population Variance Ratio; Var.Test
+
+```{r}
+## .80
+var.test(sam1, sam2, conf.level=.80)$conf.int
+
+##.70
+var.test(sam1,sam2,conf.level=.70)$conf.int
+
+##.60
+var.test(sam1,sam2,conf.level=.60)$conf.int
+
+##.50
+var.test(sam1,sam2,conf.level=.50)$conf.int
+```
+

@@ -3065,6 +3065,56 @@ ci</code></pre>
 <pre><code>## [1] -0.4170523 -0.1890083</code></pre>
 </div>
 </div>
+<div id="task-6" class="section level2">
+<h2>Task 6</h2>
+<div id="two-samples-from-normal-population-r-as-calculator-variance-ratio" class="section level3">
+<h3>Two Samples from Normal Population; R as Calculator; Variance Ratio</h3>
+<pre class="r"><code>set.seed(35)
+sam1=rnorm(25,mean=10,sd=5)
+set.seed(45)
+sam2=rnorm(34,mean=40,sd=8)
+
+df1=length(sam1)-1
+df2=length(sam2)-1
+
+var1=var(sam1)
+var2=var(sam2)
+
+alpha=.05
+
+f1 = qf(1-(alpha/2), df1, df2)
+f2 = qf(1-(alpha/2), df2, df1)
+
+ci[1] = (var1/var2)*(1/f1)
+ci[2] = (var1/var2)*f2
+
+ci</code></pre>
+<pre><code>## [1] 0.2257732 1.0309437</code></pre>
+</div>
+<div id="population-variance-ratio-var.test" class="section level3">
+<h3>Population Variance Ratio; Var.Test</h3>
+<pre class="r"><code>## .80
+var.test(sam1, sam2, conf.level=.80)$conf.int</code></pre>
+<pre><code>## [1] 0.2920457 0.7831464
+## attr(,&quot;conf.level&quot;)
+## [1] 0.8</code></pre>
+<pre class="r"><code>##.70
+var.test(sam1,sam2,conf.level=.70)$conf.int</code></pre>
+<pre><code>## [1] 0.3204384 0.7105597
+## attr(,&quot;conf.level&quot;)
+## [1] 0.7</code></pre>
+<pre class="r"><code>##.60
+var.test(sam1,sam2,conf.level=.60)$conf.int</code></pre>
+<pre><code>## [1] 0.3449688 0.6581343
+## attr(,&quot;conf.level&quot;)
+## [1] 0.6</code></pre>
+<pre class="r"><code>##.50
+var.test(sam1,sam2,conf.level=.50)$conf.int</code></pre>
+<pre><code>## [1] 0.3675269 0.6165110
+## attr(,&quot;conf.level&quot;)
+## [1] 0.5</code></pre>
+</div>
+</div>
 </div>
 
 
