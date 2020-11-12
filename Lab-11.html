@@ -3026,6 +3026,45 @@ ci</code></pre>
 ## [1] 0.1</code></pre>
 </div>
 </div>
+<div id="task-5" class="section level2">
+<h2>Task 5</h2>
+<div id="nzbirds.csv-read-in" class="section level3">
+<h3>NZBIRDS.csv Read-In</h3>
+<pre class="r"><code>birds &lt;- read.csv(&quot;NZBIRDS.csv&quot;)
+
+with(birds, table(Extinct), main=&quot;Number of Extinct&quot;)</code></pre>
+<pre><code>## Extinct
+## Absent     No    Yes 
+##     16     78     38</code></pre>
+<pre class="r"><code>with(birds, table(Extinct,Flight), margins=TRUE)</code></pre>
+<pre><code>##         Flight
+## Extinct  No Yes
+##   Absent  5  11
+##   No      7  71
+##   Yes    21  17</code></pre>
+</div>
+<div id="r-as-calculator-95-confidence-interval" class="section level3">
+<h3>R as Calculator, 95% Confidence Interval</h3>
+<pre class="r"><code>extinct = birds$Extinct
+
+n=length(extinct)
+
+
+p1 = length(extinct[extinct==&quot;Yes&quot;])
+p1 = p1/n
+
+p2 = length(extinct[extinct==&quot;No&quot;])
+p2 = p2/n
+
+z=qnorm(.975, mean=0, sd=1)
+
+ci[1] = (p1-p2) - z*sqrt((p1*(1-p1))/n+(p2*(1-p2)/n))
+ci[2] = (p1-p2) + z*sqrt((p1*(1-p1))/n+(p2*(1-p2)/n))
+
+ci</code></pre>
+<pre><code>## [1] -0.4170523 -0.1890083</code></pre>
+</div>
+</div>
 </div>
 
 

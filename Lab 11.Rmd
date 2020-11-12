@@ -212,3 +212,36 @@ t.test(exdif, conf.level=.60)$conf.int
 t.test(exdif, conf.level=.10)$conf.int
 ```
 
+## Task 5
+
+### NZBIRDS.csv Read-In
+
+```{r}
+birds <- read.csv("NZBIRDS.csv")
+
+with(birds, table(Extinct), main="Number of Extinct")
+with(birds, table(Extinct,Flight), margins=TRUE)
+```
+
+### R as Calculator, 95% Confidence Interval
+
+```{r}
+extinct = birds$Extinct
+
+n=length(extinct)
+
+
+p1 = length(extinct[extinct=="Yes"])
+p1 = p1/n
+
+p2 = length(extinct[extinct=="No"])
+p2 = p2/n
+
+z=qnorm(.975, mean=0, sd=1)
+
+ci[1] = (p1-p2) - z*sqrt((p1*(1-p1))/n+(p2*(1-p2)/n))
+ci[2] = (p1-p2) + z*sqrt((p1*(1-p1))/n+(p2*(1-p2)/n))
+
+ci
+```
+
